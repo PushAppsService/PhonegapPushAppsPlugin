@@ -1,0 +1,4 @@
+PhonegapPushAppsPlugin
+======================
+
+Phonegap PushApps Plugin
