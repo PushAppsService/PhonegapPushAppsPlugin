@@ -117,9 +117,9 @@
         <source-file src="src/ios/CDVPushApps.m" />
         
         <!-- PushApps framework -->
-        <header-file src="src/ios/PushApps/Headers/PushApps.h"  />
-        <header-file src="src/ios/PushApps/Headers/PushAppsManager.h"  />
-        <source-file src="src/ios/PushApps/libPushApps.a" framework="true"/>
+        <header-file src="src/ios/PushApps.framework/Versions/A/Headers/PushApps.h" target-dir="ios"/>
+        <header-file src="src/ios/PushApps.framework/Versions/A/Headers/PushAppsManager.h" target-dir="ios"/>
+        <source-file src="src/ios/PushApps.framework/Versions/A/PushApps" framework="true"/>
         
         <!-- System frameworks -->
         <framework src="Foundation.framework" weak="true" />
