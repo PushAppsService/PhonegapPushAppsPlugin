@@ -18,16 +18,16 @@
         <engine name="cordova" version=">=3.3.0" />
     </engines>
     
-    <js-module src="www/pushapps.js" name="PushApps">
-        <clobbers target="PushNotification" />
-    </js-module>
-    
-    <config-file>
-        <access origin="*.pushapps.mobi" />
-    </config-file>
-    
     <!-- android -->
     <platform name="android">
+        
+        <js-module src="www/pushapps.js" name="PushApps">
+            <clobbers target="PushNotification" />
+        </js-module>
+        
+        <config-file>
+            <access origin="*.pushapps.mobi" />
+        </config-file>
         
         <config-file target="res/xml/config.xml" parent="/widget">
             <feature name="PushAppsPlugin">
@@ -111,6 +111,14 @@
                 <param name="ios-package" value="CDVPushApps" />
                 <param name="onload" value="true" />
             </feature>
+        </config-file>
+        
+        <js-module src="www/pushapps.js" name="PushApps">
+            <clobbers target="PushNotification" />
+        </js-module>
+        
+        <config-file>
+            <access origin="*.pushapps.mobi" />
         </config-file>
         
         <header-file src="src/ios/CDVPushApps.h" />
