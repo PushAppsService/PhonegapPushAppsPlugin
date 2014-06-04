@@ -46,12 +46,14 @@ static char launchNotificationKey;
 	}
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
     // Notify PushApps of a successful registration.
     [[PushAppsManager sharedInstance] updatePushToken:deviceToken];
 }
 
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
     // Notify PushApps of an unsuccessful registration.
     [[PushAppsManager sharedInstance] updatePushError:error];
 }

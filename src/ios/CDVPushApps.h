@@ -11,10 +11,10 @@
 
 @interface CDVPushApps : CDVPlugin <PushAppsDelegate>
 
-- (CDVPlugin*)initWithWebView:(UIWebView*)theWebView;
+- (CDVPlugin *)initWithWebView:(UIWebView*)theWebView;
 
 - (void)registerUser:(CDVInvokedUrlCommand*)command;
-- (void)unregisterUser:(CDVInvokedUrlCommand*)command;
+- (void)unRegisterUser:(CDVInvokedUrlCommand*)command;
 - (void)getDeviceId:(CDVInvokedUrlCommand*)command;
 - (void)setTags:(CDVInvokedUrlCommand*)command;
 - (void)removeTags:(CDVInvokedUrlCommand*)command;

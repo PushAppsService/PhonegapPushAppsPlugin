@@ -14,13 +14,9 @@
 
 @implementation CDVPushApps
 
-- (CDVPlugin*)initWithWebView:(UIWebView*)theWebView
+- (CDVPlugin *)initWithWebView:(UIWebView*)theWebView
 {
-    self = [super initWithWebView:theWebView];
-    if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkForLaunchOptions:) name:@"UIApplicationDidFinishLaunchingNotification" object:nil];
-    }
-    return self;
+    return [super initWithWebView:theWebView];
 }
 
 #define LastPushMessageDictionary @"PUSHAPPSSDK_LastPushMessageDictionary"
@@ -63,9 +59,12 @@
     }
 }
 
-- (void)unregisterUser:(CDVInvokedUrlCommand*)command
+- (void)unRegisterUser:(CDVInvokedUrlCommand*)command
 {
-    // TODO: implement
+    [[PushAppsManager sharedInstance] unregisterFromPushNotificationsByDeviceId];
+    
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Your device was unregistered from push notifications"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)getDeviceId:(CDVInvokedUrlCommand*)command
@@ -242,6 +241,15 @@
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:LastPushMessageDictionary];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+}
+
+- (void)pushApps:(PushAppsManager *)manager registrationForRemoteNotificationFailedWithError:(NSError *)error
+{
+    // Update JS
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
+    
+    NSString *callbackId = [self getCallbackIdForAction:Callback_RegisterUser];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 }
 
 @end
