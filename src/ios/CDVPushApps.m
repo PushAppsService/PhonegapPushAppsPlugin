@@ -184,7 +184,9 @@
 
 - (void)pushApps:(PushAppsManager *)manager didReceiveRemoteNotification:(NSDictionary *)pushNotification whileInForeground:(BOOL)inForeground
 {
-    [self updateWithMessageParams:pushNotification];
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:pushNotification];
+    [tempDic setObject:[NSNumber numberWithBool:inForeground] forKey:@"inForeground"];
+    [self updateWithMessageParams:tempDic];
 }
 
 - (void)updateWithMessageParams:(NSDictionary *)pushNotification
